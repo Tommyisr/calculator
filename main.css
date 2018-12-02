@@ -40,7 +40,7 @@ html {
     text-align: right;
     line-height: 2rem;
     border-radius: 2%;
-    font-size: 20px;
+    font-size: 26px;
     border: 2px gray solid;
     color: #83315E;
     /* box-shadow: 0px 0px 10px; */
@@ -92,13 +92,13 @@ html {
     width: 90px;
     height: 80px;
     border-radius: 35%;
-    border: 1px solid #dad892;
+    /* border: 1px solid #dad892; */
     background: #197BBD;
-    
+    /* box-shadow: 0px 0px 20px; */
     font-size: 40px;
     color: #F1FEC6;
     margin: 0.5rem;
     margin-right: 1.5rem;
     /* font-style: oblique; */
-
+    justify-items: center;
 }
