@@ -1,8 +1,9 @@
-let dspl = 0;
+let dspl = undefined;
 let firstArg = undefined;
 let secondArg = undefined;
 let operator = undefined;
-document.querySelector(".display").innerHTML = dspl;
+let result = undefined;
+document.querySelector(".display").innerHTML = '';
 
 function add(a, b) {
     return a + b
@@ -43,8 +44,25 @@ operatorss.forEach(x => x.addEventListener('click', PutNumber));
 
 function math(e){
     // window.console.log(e.target.innerHTML);
-    firstArg = dspl;
-    dspl = 0;
+    if(firstArg == undefined || operator == undefined) {
+        // firstArg = dspl;
+        firstArg = document.querySelector(".display").innerHTML
+        window.console.log(firstArg);
+        dspl = undefined;
+        }    
+        
+        else secondArg = dspl;
+    // dspl = e.target.innerHTML;
+    document.querySelector(".display").innerHTML += e.target.innerHTML;
+    if (firstArg != undefined && secondArg != undefined)
+    {
+        result = operate(Number(firstArg), Number(secondArg), operator);
+        window.console.log(firstArg);
+        window.console.log(secondArg);
+        window.console.log(result);
+        secondArg = undefined;
+        firstArg = result;
+    }
     switch(e.target.innerHTML) {
         case '+' :
         operator = 'ADD'
@@ -69,7 +87,7 @@ function math(e){
 
 
     }
-
+    
     let x = Number(e.target.innerHTML);
     // window.console.log(x);
 }
@@ -79,27 +97,42 @@ function PutNumber(e) {
     // window.console.log(secondArg);
     switch(e.target.innerHTML) {
         case '=':
-    window.console.log(dspl);
-
+    // window.console.log(dspl);
+    // document.querySelector(".display").innerHTML = result;
         secondArg = dspl;
-        if(firstArg != undefined && operator != undefined) {
-            window.console.log(operator)
-            document.querySelector(".display").innerHTML = operate(Number(firstArg), Number(secondArg), operator);
-            dspl = 0;
-            firstArg = 0;
-            secondArg = 0;        
-        }
+        dspl = undefined;
+        let x = operate(Number(firstArg), Number(secondArg), operator);
+
+        document.querySelector(".display").innerHTML = x;
+        firstArg = x
+        secondArg = undefined
+        operator = undefined
+        // if(firstArg != undefined && operator != undefined) {
+        //     window.console.log(operator)
+        //     document.querySelector(".display").innerHTML = operate(Number(firstArg), Number(secondArg), operator);
+        //     dspl = 0;
+        //     firstArg = 0;
+        //     secondArg = 0;        
+        // }
         break;
         case 'CLR':
-        dspl = 0;
-        document.querySelector(".display").innerHTML = dspl;
+        dspl = undefined;
+        firstArg = undefined
+        secondArg = undefined
+        document.querySelector(".display").innerHTML = '';
         break;
-        
+
         default:
-        if(dspl == 0 ) dspl = e.target.innerHTML;
-    else dspl += e.target.innerHTML;
+        dspl = e.target.innerHTML
+        if(firstArg != undefined && operator == undefined)  {
+        document.querySelector(".display").innerHTML = dspl;
+        }
+    else     document.querySelector(".display").innerHTML += dspl;
+        // if(dspl == 0  ) document.querySelector(".display").innerHTML = dspl;
+        
+    // else document.querySelector(".display").innerHTML += dspl;
     // window.console.log(dspl);
-    document.querySelector(".display").innerHTML = dspl;
+    // document.querySelector(".display").innerHTML = dspl;
 
     }
     
