@@ -104,18 +104,38 @@ function math(e){
 }
 
 function muldiv(arr) {
-    let x = arr.indexOf('x')
-    console.log(x)
-// while (x != -1) {
+
+    let x = arr.indexOf('/')
+    while (x != -1) {
+        let res = operate(Number(arr[x-1]),Number(arr[x+1]),arr[x])
+        arr.splice(x-1,3,res)
+        x = arr.indexOf('/')
+    
+    }
+
+     x = arr.indexOf('x')
+while (x != -1) {
     let res = operate(Number(arr[x-1]),Number(arr[x+1]),arr[x])
-    console.log(res)
     arr.splice(x-1,3,res)
-    console.log(arr);
+    x = arr.indexOf('x')
 
-    // x = arr.indexOf('x')
+}
+ 
+console.log(arr)
 
-// }
 
+
+
+}
+
+function plusminus(arr) {
+let res = operate(Number(arr[0]), Number(arr[2]),arr[1])
+    for (let x = 3; x<arr.length; x+=2) {
+        res = operate(res, Number(arr[x+1]),arr[x])
+        console.log(res)
+    }
+
+    return res
 }
 
 function PutNumber(e) { // buttons '=' and 'CLR'
@@ -125,15 +145,16 @@ function PutNumber(e) { // buttons '=' and 'CLR'
         case '=':
     window.console.log(dspl);
     
-   let str =  dspl.replace('+', ' + ').replace('-', ' - ').replace('x', ' x ').replace('/', ' / ');
+   let str =  dspl.replace(/\+/g, ' + ').replace(/\-/g, ' - ').replace(/\x/g, ' x ').replace(/\//g, ' / ');
+//    console.log(str)
 let arr = str.split(' ')
-
+// console.log(arr)
 muldiv(arr)
-plusminus(arr)
-    window.console.log(str);
-    window.console.log(arr);
-
-
+    // window.console.log(str);
+    // window.console.log(arr);
+document.querySelector(".display").innerHTML = plusminus(arr)
+// dspl =                
+// FLAG OF '='
 
         break;
         case 'CLR':
