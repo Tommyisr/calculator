@@ -24,13 +24,13 @@ function divide(a, b) {
 
 function operate(a,b,op) {
     switch(op) {
-        case 'ADD':
+        case '+':
         return add(a,b)
-        case 'SUB':
+        case '-':
         return substract(a,b)
-        case 'MUL':
+        case 'x':
         return multiply(a,b)
-        case 'DIV':
+        case '/':
         return divide(a,b)
     }
 }
@@ -103,6 +103,21 @@ function math(e){
     */
 }
 
+function muldiv(arr) {
+    let x = arr.indexOf('x')
+    console.log(x)
+// while (x != -1) {
+    let res = operate(Number(arr[x-1]),Number(arr[x+1]),arr[x])
+    console.log(res)
+    arr.splice(x-1,3,res)
+    console.log(arr);
+
+    // x = arr.indexOf('x')
+
+// }
+
+}
+
 function PutNumber(e) { // buttons '=' and 'CLR'
     // window.console.log(firstArg);
     // window.console.log(secondArg);
@@ -110,10 +125,16 @@ function PutNumber(e) { // buttons '=' and 'CLR'
         case '=':
     window.console.log(dspl);
     
-    
+   let str =  dspl.replace('+', ' + ').replace('-', ' - ').replace('x', ' x ').replace('/', ' / ');
+let arr = str.split(' ')
+
+muldiv(arr)
+plusminus(arr)
+    window.console.log(str);
+    window.console.log(arr);
 
 
-    
+
         break;
         case 'CLR':
         dspl = undefined;
