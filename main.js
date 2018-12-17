@@ -35,25 +35,41 @@ function operate(a,b,op) {
     }
 }
 
-let operators = document.querySelectorAll(".op");
-operators.forEach(x => x.addEventListener('click', math));
+// let operators = document.querySelectorAll(".op");
+// operators.forEach(x => x.addEventListener('click', math));
 
-let operatorss = document.querySelectorAll(".digital");
-operatorss.forEach(x => x.addEventListener('click', PutNumber));
+
+let operators = document.querySelectorAll(".op");
+operators.forEach(x => x.addEventListener('click', PutNumber));
+
+
+let results = document.querySelectorAll(".digital");
+results.forEach(x => x.addEventListener('click', PutNumber));
 
 
 function math(e){
     // window.console.log(e.target.innerHTML);
+    // dspl += e.target.innerHTML;
+    // document.querySelector(".display").innerHTML = dspl;
+
+
+    /*
     if(firstArg == undefined || operator == undefined) {
         // firstArg = dspl;
         firstArg = document.querySelector(".display").innerHTML
         window.console.log(firstArg);
         dspl = undefined;
         }    
-        
+      
+     
+      
         else secondArg = dspl;
     // dspl = e.target.innerHTML;
     document.querySelector(".display").innerHTML += e.target.innerHTML;
+    */
+    
+
+    /*
     if (firstArg != undefined && secondArg != undefined)
     {
         result = operate(Number(firstArg), Number(secondArg), operator);
@@ -76,44 +92,28 @@ function math(e){
         case '/' :
         operator = 'DIV'
         break
-        // case 'CLR' :
-        // dspl = 0;
-        // a=0;
-        // b=0;
-        // case '=' :
-        // dspl = operate(firstArg, secondArg, operator);
-        // a=0;
-        // b=0;
+        
 
 
     }
     
     let x = Number(e.target.innerHTML);
     // window.console.log(x);
+
+    */
 }
 
-function PutNumber(e) {
+function PutNumber(e) { // buttons '=' and 'CLR'
     // window.console.log(firstArg);
     // window.console.log(secondArg);
     switch(e.target.innerHTML) {
         case '=':
-    // window.console.log(dspl);
-    // document.querySelector(".display").innerHTML = result;
-        secondArg = dspl;
-        dspl = undefined;
-        let x = operate(Number(firstArg), Number(secondArg), operator);
+    window.console.log(dspl);
+    
+    
 
-        document.querySelector(".display").innerHTML = x;
-        firstArg = x
-        secondArg = undefined
-        operator = undefined
-        // if(firstArg != undefined && operator != undefined) {
-        //     window.console.log(operator)
-        //     document.querySelector(".display").innerHTML = operate(Number(firstArg), Number(secondArg), operator);
-        //     dspl = 0;
-        //     firstArg = 0;
-        //     secondArg = 0;        
-        // }
+
+    
         break;
         case 'CLR':
         dspl = undefined;
@@ -123,13 +123,25 @@ function PutNumber(e) {
         break;
 
         default:
-        dspl = e.target.innerHTML
-        if(firstArg != undefined && operator == undefined)  {
-        document.querySelector(".display").innerHTML = dspl;
+        if ( dspl === undefined) dspl = e.target.innerHTML ;
+        else if ((dspl[dspl.length-1] === '+' || dspl[dspl.length-1] === '-' || 
+        dspl[dspl.length-1] === 'x' || dspl[dspl.length-1] === '/') && (e.target.innerHTML === '+' || 
+        e.target.innerHTML === '-' || e.target.innerHTML === 'x' ||  e.target.innerHTML === '/')) 
+        {
+            break;
         }
-    else     document.querySelector(".display").innerHTML += dspl;
-        // if(dspl == 0  ) document.querySelector(".display").innerHTML = dspl;
         
+        else dspl += e.target.innerHTML;
+        // if(firstArg != undefined && operator == undefined)  {
+        // document.querySelector(".display").innerHTML = dspl;
+        // }
+    // else     
+    document.querySelector(".display").innerHTML = dspl;
+  
+    
+    
+    // if(dspl == 0  ) document.querySelector(".display").innerHTML = dspl;
+    
     // else document.querySelector(".display").innerHTML += dspl;
     // window.console.log(dspl);
     // document.querySelector(".display").innerHTML = dspl;
