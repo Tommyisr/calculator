@@ -138,6 +138,8 @@ let res = operate(Number(arr[0]), Number(arr[2]),arr[1])
     return res
 }
 
+// huy
+
 function PutNumber(e) { // buttons '=' and 'CLR'
     // window.console.log(firstArg);
     // window.console.log(secondArg);
