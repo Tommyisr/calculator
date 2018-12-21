@@ -5,6 +5,8 @@ let operator = undefined;
 let result = undefined;
 document.querySelector(".display").innerHTML = '';
 
+
+
 function add(a, b) {
     return a + b
 }
@@ -42,12 +44,17 @@ function operate(a,b,op) {
 let operators = document.querySelectorAll(".op");
 operators.forEach(x => x.addEventListener('click', PutNumber));
 
+window.addEventListener('keydown', PutNumber);
+// let arr = document.querySelectorAll(".digital");
+// arr.forEach(x => x.addEventListener('keydown', PutNumber));
+
 
 let results = document.querySelectorAll(".digital");
 results.forEach(x => x.addEventListener('click', PutNumber));
 
 
 function math(e){
+    // console.log(e.key)
     // window.console.log(e.target.innerHTML);
     // dspl += e.target.innerHTML;
     // document.querySelector(".display").innerHTML = dspl;
@@ -143,7 +150,10 @@ let res = operate(Number(arr[0]), Number(arr[2]),arr[1])
 function PutNumber(e) { // buttons '=' and 'CLR'
     // window.console.log(firstArg);
     // window.console.log(secondArg);
-    switch(e.target.innerHTML) {
+    console.log(e.key)
+    if(e.key >=0 && e.key <=9) num = e.key;
+    else num = e.target.innerHTML;
+    switch(num) {
         case '=':
     window.console.log(dspl);
     
@@ -167,15 +177,19 @@ document.querySelector(".display").innerHTML = plusminus(arr)
         break;
 
         default:
-        if ( dspl === undefined) dspl = e.target.innerHTML ;
+
+        if ( dspl === undefined) dspl = num ;
+
+        // if ( dspl === undefined) dspl = e.target.innerHTML ;
+
         else if ((dspl[dspl.length-1] === '+' || dspl[dspl.length-1] === '-' || 
-        dspl[dspl.length-1] === 'x' || dspl[dspl.length-1] === '/') && (e.target.innerHTML === '+' || 
-        e.target.innerHTML === '-' || e.target.innerHTML === 'x' ||  e.target.innerHTML === '/')) 
+        dspl[dspl.length-1] === 'x' || dspl[dspl.length-1] === '/') && (num === '+' || 
+        num === '-' || num === 'x' ||  num === '/')) 
         {
             break;
         }
         
-        else dspl += e.target.innerHTML;
+        else dspl += num;
         // if(firstArg != undefined && operator == undefined)  {
         // document.querySelector(".display").innerHTML = dspl;
         // }
