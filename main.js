@@ -164,7 +164,12 @@ let arr = str.split(' ')
 muldiv(arr)
     // window.console.log(str);
     // window.console.log(arr);
-document.querySelector(".display").innerHTML = plusminus(arr)
+    let temp = undefined
+if (arr.length == 1) {
+    temp = arr[0]
+} else temp = plusminus(arr)
+
+document.querySelector(".display").innerHTML = temp
 // dspl =                
 // FLAG OF '='
 
